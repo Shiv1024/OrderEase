@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import '../index.css';
+import './index.css';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 const AuthForm = () => {
   const [memberstate, setMemberState] = useState(false); // false for login, true for sign-up
   const [credentials, setCredentials] = useState({ email: '', password: '', confirmPassword: '' });
+  const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
@@ -41,18 +45,28 @@ const AuthForm = () => {
               onChange={handleChange}
               required
             />
-            <input
-              type="password"
-              name="password"
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Password"
-              value={credentials.password}
-              onChange={handleChange}
-              required
-            />
-            {memberstate && (
+            <div className="relative">
               <input
-                type="password"
+                type={passwordVisible ? 'text' : 'password'}
+                name="password"
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Password"
+                value={credentials.password}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                onClick={() => setPasswordVisible(!passwordVisible)}
+              >
+                {passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              </button>
+            </div>
+            {memberstate && (
+              <div className='relative'>
+              <input
+                type={passwordVisible ? 'text' : 'password'}
                 name="confirmPassword"
                 className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Confirm Password"
@@ -60,6 +74,15 @@ const AuthForm = () => {
                 onChange={handleChange}
                 required
               />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                onClick={() => setPasswordVisible(!passwordVisible)}
+              >
+                {passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              </button>
+              </div>
+              
             )}
             {error && <p className="text-red-500 text-sm text-center">{error}</p>}
           </div>
@@ -77,9 +100,9 @@ const AuthForm = () => {
                 onClick={() => {
                   setMemberState(!memberstate);
                   setCredentials({
-                    email: "",
-                    password: "",
-                    confirmPassword: ""
+                    email: '',
+                    password: '',
+                    confirmPassword: '',
                   });
                 }}
               >
@@ -92,9 +115,9 @@ const AuthForm = () => {
                 onClick={() => {
                   setMemberState(!memberstate);
                   setCredentials({
-                    email: "",
-                    password: "",
-                    confirmPassword: ""
+                    email: '',
+                    password: '',
+                    confirmPassword: '',
                   });
                 }}
               >
