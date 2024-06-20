@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import '../index.css';
 const AuthForm = () => {
   const [memberstate, setMemberState] = useState(false); // false for login, true for sign-up
   const [credentials, setCredentials] = useState({ email: '', password: '', confirmPassword: '' });
