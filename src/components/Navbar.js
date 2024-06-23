@@ -1,38 +1,108 @@
-import React, { useState } from 'react';
-import './index.css'
-const Navbar = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const timeoutRef = useRef(null);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleMenuEnter = () => {
+    clearTimeout(timeoutRef.current); 
+    setIsOpen(true);
+  };
+
+  const handleMenuLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 400); 
   };
 
   return (
-    <nav className="bg-white shadow-md py-4">
-      <div className="container mx-auto flex items-center justify-between px-4">
-        <div className="flex items-center">
-          <img src={"https://imgs.search.brave.com/ndVksVneoAbvmB1oeoqQhllh_G9nNXUkjdFWNabCt1A/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9kMnVh/cnM3eGtkbXp0cS5j/bG91ZGZyb250Lm5l/dC9hcHBfcmVzb3Vy/Y2VzL2N1c3RvbWl6/YXRpb25zL1NBR0VD/QU5BREEvMTExNTE1/L3RodW1ic18xMTIv/aW1nOTE5ODAxMTUx/MDQxNzgwMjg1Mi5w/bmc_MWFiYWNiZmY5/NWZlYWI5YjQxMjQ4/OGY1NzRkOWYyMjI"} alt="OrderEase" className="h-8 w-8 mr-2" /> {/* Replace with your logo */}
+    <nav className="bg-white shadow-lg">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div className="flex items-center space-x-4">
+          <Link
+            to="/menu"
+            className="flex items-center space-x-4 text-gray-800 hover:text-blue-500 transition duration-300"
+          >
+            <img src="/logo.jpg" alt="OrderEase Logo" className="h-8 w-auto" />
+            <span className="text-xl font-semibold text-gray-800">OrderEase</span>
+          </Link>
         </div>
-        <div className="flex items-center space-x-4 mr-10">
-          <a href="#menu" className="text-gray-800 hover:text-blue-500">Menu</a>
-          <a href="#cart" className="text-gray-800 hover:text-blue-500">Cart</a>
-          <div className="relative">
-            <button
-              onClick={toggleDropdown}
-              className="text-gray-800 hover:text-blue-500 focus:outline-none"
-            >
+        <div className="hidden md:flex space-x-8">
+          <Link
+            to="/menu"
+            className="text-gray-800 text-lg hover:text-blue-500 transition duration-300"
+          >
+            Menu
+          </Link>
+          <Link
+            to="/cart"
+            className="text-gray-800 text-lg hover:text-blue-500 transition duration-300"
+          >
+            Cart
+          </Link>
+          <div
+            className="relative group"
+            onMouseEnter={handleMenuEnter}
+            onMouseLeave={handleMenuLeave}
+          >
+            <button className="text-gray-800 text-lg hover:text-blue-500 transition duration-300 focus:outline-none">
               More
             </button>
-            {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
-                <a href="#profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
-                <a href="#orders" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Orders</a>
-                <a href="#settings" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
-              </div>
-            )}
+            <div
+              className={`absolute ${isOpen ? 'block' : 'hidden'} bg-white shadow-lg rounded mt-2 w-40`}
+            >
+              <Link
+                to="/profile"
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+              >
+                Profile
+              </Link>
+              <Link
+                to="/orders"
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+              >
+                Orders
+              </Link>
+              <Link
+                to="/settings"
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+              >
+                Settings
+              </Link>
+            </div>
           </div>
         </div>
+        <div className="md:hidden">
+          <button onClick={toggleMenu} className="text-gray-800 focus:outline-none">
+            {isOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
+      {isOpen && (
+        <div className="md:hidden">
+          <Link to="/menu" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+            Menu
+          </Link>
+          <Link to="/cart" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+            Cart
+          </Link>
+          <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+            Profile
+          </Link>
+          <Link to="/orders" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+            Orders
+          </Link>
+          <Link to="/settings" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+            Settings
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };

@@ -3,7 +3,7 @@ import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
 import DishCard from './Dish.js'; // Adjust the import path based on your file structure
 import Offers from './offers.js';
-import Navbar from "./Navbar";
+import Navbar from './Navbar.js';
 
 const Menu = () => {
   const [categories, setCategories] = useState([]);
