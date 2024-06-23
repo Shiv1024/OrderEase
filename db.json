@@ -1,0 +1,108 @@
+{
+  "offers":[
+    {"id":1,"title":"60% Off Upto Rs 110"},
+    {"id":2,"title":"30% Off Upto Rs 75"},
+    {"id":3,"title":"Flat Rs 110 Off on first order"},
+    {"id":4,"title":"Buy one get one free on orders above Rs 500"}
+  ],
+  "categories": [
+    {
+      "id": 5,
+      "name": "Indian",
+      "dishes": [
+        {
+          "id": 6,
+          "name": "Butter Chicken",
+          "price": "250",
+          "image": "https://imgs.search.brave.com/D4y8K4wTs8Wrv100-LYBG-aytGAHBUbxZF-w4yMR1Hs/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTMy/NjkxMTkzNy9waG90/by9idXR0ZXItY2hp/Y2tlbi5qcGc_cz02/MTJ4NjEyJnc9MCZr/PTIwJmM9NF9mUlR5/eHdtNjR0YklxNWUz/eGxoUjlmZ1pIcFdt/TGRtNlZuam1SaUZo/VT0",
+          "description": "Butter Chicken is a popular Indian dish made with tender chicken pieces cooked in a creamy tomato sauce.",
+          "nutrients": "Calories: 490, Protein: 24g, Carbs: 16g, Fat: 35g"
+        },
+        {
+          "id": 7,
+          "name": "Palak Paneer",
+          "price": "190",
+          "image": "https://imgs.search.brave.com/SBO6y11hE03Rp7AsJO17QhXA9syDb2Lb4MlUswit88s/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNjcw/OTA2OTEzL3Bob3Rv/L3BhbGFrLXBhbmVl/ci1pbmRpYW4tZm9v/ZC5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9M3pSSTg1WGJm/TFRWV3F2eWNuNWVr/cFBIUUdzYUlsMHU1/cXg0TDNFSE5nOD0",
+          "description": "Palak Paneer is a vegetarian dish made with paneer cubes cooked in a pureed spinach sauce.",
+          "nutrients": "Calories: 280, Protein: 14g, Carbs: 10g, Fat: 20g"
+        },
+        {
+          "id": 8,
+          "name": "Kadhai Paneer",
+          "price": "220",
+          "image": "https://imgs.search.brave.com/e9yi-AA126j_KnJ4oTor_BWIYRFL18nqXb2DBytm4Rk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9leHF1aXNpdGUt/bWF0YXItcGFuZWVy/LXBsYXR0ZXJfMTE3/OTEzMC0xNzA4NTEu/anBnP3NpemU9NjI2/JmV4dD1qcGc",
+          "description": "Kadhai Paneer is a spicy and flavorful dish made with paneer, bell peppers, and tomatoes cooked in a wok.",
+          "nutrients": "Calories: 320, Protein: 15g, Carbs: 12g, Fat: 25g"
+        },
+        {
+          "id": 9,
+          "name": "Chhole Bhature",
+          "price": "100",
+          "image": "https://imgs.search.brave.com/KvMuN38wz6j0JzWOLftAxjjCl4WmhChKZf6sJlV72VM/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9ub3J0aC1pbmRp/YW4tY2xhc3NpYy1j/aG9sZS1iaGF0dXJl/LXdoaXRlLWJhY2tn/cm91bmQtY2hvbGUt/YmhhdHVyZS1waWN0/dXJlLXBob3RvZ3Jh/cGh5XzEwMjA2OTct/MTEzNjc5LmpwZz9z/aXplPTYyNiZleHQ9/anBn",
+          "description": "Chhole Bhature is a classic North Indian dish consisting of spicy chickpea curry served with deep-fried bread.",
+          "nutrients": "Calories: 450, Protein: 18g, Carbs: 50g, Fat: 20g"
+        },
+        {
+          "id": 10,
+          "name": "Dal Makhni",
+          "price": "170",
+          "image": "https://imgs.search.brave.com/ZH8zid1z2KjJmhxgPsJMOPAP3PMTP2F4cKManrDqz6A/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9yYWlu/Ym93cGxhbnRsaWZl/LmNvbS93cC1jb250/ZW50L3VwbG9hZHMv/MjAyMS8wNi9EYWwt/TWFraGFuaS1lZGl0/ZWQtcGhvdG9zLTQt/b2YtNi04MTl4MTAy/NC5qcGc",
+          "description": "Dal Makhni is a rich and creamy lentil dish made with black lentils and kidney beans cooked with butter and cream.",
+          "nutrients": "Calories: 320, Protein: 13g, Carbs: 30g, Fat: 15g"
+        },
+        {
+          "id": 11,
+          "name": "Garlic Naan",
+          "price": "60",
+          "image": "https://imgs.search.brave.com/1tAb2HBLTUnlKPyx-j10A-esquGjm_WJkscLLkkVDwg/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTU3/NjA2MDc3L3Bob3Rv/L2Vhc3QtaW5kaWFu/LW5hYW4tYnJlYWQu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PTB5dnNuRnEzbUdE/RW01T1hBQXByOGpW/QmJyT0dIcDFKdVk3/Vm5KV1pNN1U9",
+          "description": "Garlic Naan is a popular Indian flatbread made with flour, yogurt, and garlic, cooked in a tandoor oven.",
+          "nutrients": "Calories: 220, Protein: 6g, Carbs: 30g, Fat: 8g"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Chinese",
+      "dishes": [
+        {
+          "id": 13,
+          "name": "Chili Garlic Noodles",
+          "price": "140",
+          "image": "https://imgs.search.brave.com/OVfmEXKT1XyTkAui8p7zKmAwufPkkTuyHVxfle_yX4s/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9jaG93bWVpbl85/NDU3ODctNjQ5Lmpw/Zz9zaXplPTYyNiZl/eHQ9anBn",
+          "description": "Chili Garlic Noodles are spicy stir-fried noodles with garlic, chili, and a mix of vegetables.",
+          "nutrients": "Calories: 350, Protein: 8g, Carbs: 50g, Fat: 12g"
+        },
+        {
+          "id": 14,
+          "name": "Spring Rolls",
+          "price": "120",
+          "image": "https://imgs.search.brave.com/NxuhyCaziGcb80Bvft9jy5HL0x5Q6_fidF7hP7PZCw0/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTI3/MjIzNTEyNi9waG90/by9ob21lbWFkZS1z/cHJpbmctcm9sbHMu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PWFjblRtQVRUcmYy/cVplblhjR3hEVjV0/RUNmUXpVYV8tclBo/TS1ZYzFEeGM9",
+          "description": "Spring Rolls are a popular Chinese appetizer made with thin pastry filled with vegetables and deep-fried until crispy.",
+          "nutrients": "Calories: 200, Protein: 4g, Carbs: 25g, Fat: 10g"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Italian",
+      "dishes": [
+        {
+          "id": 16,
+          "name": "Pizza",
+          "price": "200",
+          "image": "https://imgs.search.brave.com/2sQc65uvEcoTQGQiZWGqKwd9Q1mPFjX004D-pI8EEtM/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9leHBl/cnRwaG90b2dyYXBo/eS5iLWNkbi5uZXQv/d3AtY29udGVudC91/cGxvYWRzLzIwMTgv/MTEvcGl6emEtcGhv/dG9ncmFwaHktZ291/cm1ldC1waXp6YS5q/cGc",
+          "description": "Pizza is an Italian dish consisting of a yeasted flatbread topped with tomato sauce, cheese, and various toppings, baked in an oven.",
+          "nutrients": "Calories: 300, Protein: 12g, Carbs: 36g, Fat: 12g"
+        },
+        {
+          "id": 17,
+          "name": "Pasta",
+          "price": "180",
+          "image": "https://imgs.search.brave.com/uzrnHvfxct2yxGTXLMRdq8lWUpQkR0jx_IwpTVeQOg8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9k/ZWxpY2lvdXMtcGFz/dGEtcGxhdGVfMjMt/MjE1MDY5MDcxMy5q/cGc_c2l6ZT02MjYm/ZXh0PWpwZw",
+          "description": "Pasta is a traditional Italian dish made from unleavened dough of wheat flour mixed with water or eggs, formed into various shapes, and cooked by boiling or baking.",
+          "nutrients": "Calories: 220, Protein: 8g, Carbs: 30g, Fat: 6g"
+        }
+      ]
+    }
+  ]
+}

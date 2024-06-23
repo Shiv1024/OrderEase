@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthForm = () => {
-  const [memberstate, setMemberState] = useState(false); // false for login, true for sign-up
+  const [memberstate, setMemberState] = useState(false); 
   const [credentials, setCredentials] = useState({ email: '', password: '', confirmPassword: '' });
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -12,17 +15,17 @@ const AuthForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (memberstate) {
-      // Sign-up logic
       if (credentials.password !== credentials.confirmPassword) {
         setError('Passwords do not match');
         return;
       }
       setError('');
       console.log('Sign Up:', credentials);
+      navigate("/menu");
     } else {
-      // Login logic
       setError('');
       console.log('Login:', credentials);
+      navigate("/menu");
     }
   };
 
@@ -63,12 +66,14 @@ const AuthForm = () => {
             )}
             {error && <p className="text-red-500 text-sm text-center">{error}</p>}
           </div>
+
           <button
             type="submit"
             className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
           >
             {memberstate ? 'Sign Up' : 'Login'}
           </button>
+          
           <div className="text-center">
             {!memberstate ? (
               <button
