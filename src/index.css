@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+/* Custom styles for react-slick slider */
+/* Custom styles for react-slick slider */
+.slick-prev, .slick-next {
+    width: 20px; /* Set the width for better visibility */
+    height: 20px; /* Set the height for better visibility */
+    z-index: 1;
+    top: 0; /* Center the arrows vertically */
+    transform: translateY(-50%); /* Adjust the vertical centering */
+    color: black; /* Change the color if needed */
+    background: rgba(255, 255, 255, 0.8); /* Add a background color for better visibility */
+    border-radius: 50%; /* Make the background circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .slick-prev::before, .slick-next::before {
+    font-size: 24px; /* Increase the icon size */
+    color: black; /* Change the color if needed */
+  }
+  
+  .slick-dots li button::before {
+    font-size: 12px; /* Adjust the size of the dots */
+    color: black; /* Change the color of the dots */
+  }

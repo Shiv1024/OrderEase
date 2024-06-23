@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './index.css'; // assuming you have custom styles in index.css
 import SearchIcon from '@mui/icons-material/Search';
 import DishCard from './Dish.js'; // Adjust the import path based on your file structure
 import Offers from './offers.js';
+import Navbar from "./Navbar";
 
 const Menu = () => {
   const [categories, setCategories] = useState([]);
@@ -68,6 +68,8 @@ const Menu = () => {
   };
 
   return (
+    <div>
+      <Navbar />
     <div className="categories bg-gray-100 min-h-screen py-8">
       <div className="max-w-3xl mx-auto px-4">
         <h2 className="text-3xl font-bold mb-4 text-center">Menu</h2>
@@ -117,7 +119,8 @@ const Menu = () => {
                     id={dish.id}
                     image={dish.image}
                     name={dish.name}
-                    price={"Rs.73"}
+                    price={dish.price}
+                    item={dish}
                     description={dish.description}
                     nutrients={dish.nutrients}
                   />
@@ -130,6 +133,7 @@ const Menu = () => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };

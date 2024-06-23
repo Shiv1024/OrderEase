@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import './index.css';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthForm = () => {
-  const [memberState, setMemberState] = useState(false); // false for login, true for sign-up
+  const [memberstate, setMemberState] = useState(false); 
   const [credentials, setCredentials] = useState({ email: '', password: '', confirmPassword: '' });
   const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
   const [role, setRole] = useState('customer'); // State to handle role selection
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -20,18 +20,18 @@ const AuthForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (memberState) {
-      // Sign-up logic
+    if (memberstate) {
       if (credentials.password !== credentials.confirmPassword) {
         setError('Passwords do not match');
         return;
       }
       setError('');
-      console.log('Sign Up:', credentials, 'Role:', role);
+      console.log('Sign Up:', credentials);
+      navigate("/menu");
     } else {
-      // Login logic
       setError('');
-      console.log('Login:', credentials, 'Role:', role);
+      console.log('Login:', credentials);
+      navigate("/menu");
     }
   };
 
@@ -106,12 +106,14 @@ const AuthForm = () => {
               </select>
             </div>
           </div>
+
           <button
             type="submit"
             className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
           >
             {memberState ? 'Sign Up' : 'Login'}
           </button>
+          
           <div className="text-center">
             {!memberState ? (
               <button

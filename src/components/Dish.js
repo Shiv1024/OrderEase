@@ -1,18 +1,65 @@
 import React, { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { green } from '@mui/material/colors';
+import { green} from '@mui/material/colors';
+import { useDispatch, useSelector } from 'react-redux';
+import {addToCart, removeFromCart, increment, decrement} from "../store/CartSlice";
+
 const DishCard = (props) => {
-  const [quantity, setQuantity] = useState(0);
+
+  const {cart} = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const[present, setPresent] = useState(!cart.length || !(cart.some((product) => product.food.id === props.id)) ? true : false);
+
+  const getQuantity = () => {
+
+    if(!present)
+      {
+        const productInCart = cart.find((product) => product.food.id === props.item.id);
+        return productInCart.amount;
+      }
+  
+      else return 0;
+
+  }
+
+  const[quantity, setQuantity] = useState(getQuantity);
+
+  console.log(quantity);
 
   const handleAddItem = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    if(quantity === 0)
+    {
+      getQuantity();
+      console.log("addToCart");
+      dispatch(addToCart({food: props.item, amount: 1}));
+      setPresent(false);
+    } 
+    else 
+    {
+      console.log("increment");
+      dispatch(increment(props.item));
+    }
+
+    setQuantity(quantity+1);
   };
 
   const handleRemoveItem = () => {
-    if (quantity > 0) {
-      setQuantity(prevQuantity => prevQuantity - 1);
+
+    if(quantity !== 1)
+      {
+        console.log("decrement");
+        dispatch(decrement(props.item));
+      }
+    else
+    {
+      console.log("removeFromCart");
+      dispatch(removeFromCart(props.item));
+      setPresent(true);
     }
+
+    setQuantity(quantity-1);
   };
 
   return (
