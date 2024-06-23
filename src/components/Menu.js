@@ -4,6 +4,7 @@ import './index.css'; // assuming you have custom styles in index.css
 import SearchIcon from '@mui/icons-material/Search';
 import DishCard from './Dish.js'; // Adjust the import path based on your file structure
 import Offers from './offers.js';
+
 const Menu = () => {
   const [categories, setCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -11,67 +12,59 @@ const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [offers, setOffers] = useState([]);
 
-
   useEffect(() => {
     // Fetch categories and offers from db.json using axios
     axios.get('http://localhost:5000/categories')
       .then(response => {
-        const categories=response.data;
+        const categories = response.data;
         setCategories(categories);
-        console.log(response)
+        console.log(response);
         // Initially set filtered dishes to all dishes from all categories
         const allDishes = categories.flatMap(category => category.dishes);
         setFilteredDishes(allDishes);
       })
-      .catch(error => console.error('Error fetching categories and offers:', error));
+      .catch(error => console.error('Error fetching categories:', error));
   }, []);
-  
+
   useEffect(() => {
     // Fetch offers from the correct endpoint
     axios.get('http://localhost:5000/offers')
       .then(response => {
         const offers = response.data;
-        offers.map((offers)=>{
-          setOffers(previous=>{
-            return [...previous,offers.title];
-          })
-        })    
+        const offerTitles = offers.map(offer => offer.title);
+        setOffers(offerTitles);
         console.log(offers);
       })
       .catch(error => console.error('Error fetching offers:', error));
   }, []);
 
   const handleSearchChange = (event) => {
-    const query = event.target.value; // Get the search query from input
-    setSearchQuery(query); // Update searchQuery state with the new query
+    const query = event.target.value;
+    setSearchQuery(query);
 
-    // Filter dishes based on search query and selected category
-    const allDishes = categories.flatMap(category => category.dishes);
-    const filtered = allDishes.filter(dish =>
-      dish.name.toLowerCase().includes(query.toLowerCase()) &&
-      (!selectedCategory || categories.find(category => category.id === selectedCategory)?.dishes.includes(dish))
-    );
-    setFilteredDishes(filtered);
+    filterDishes(selectedCategory, query);
   };
 
   const handleCategoryChange = (event) => {
     const categoryId = parseInt(event.target.value);
     setSelectedCategory(categoryId);
 
-    if (!categoryId) {
-      // Show all dishes if no category is selected
-      const allDishes = categories.flatMap(category => category.dishes);
-      setFilteredDishes(allDishes);
-    } else {
-      const category = categories.find(cat => cat.id === categoryId);
-      if (category) {
-        setFilteredDishes(category.dishes.filter(dish =>
-          dish.name.toLowerCase().includes(searchQuery)
-        ));
-      } else {
-        setFilteredDishes([]);
-      }
+    filterDishes(categoryId, searchQuery);
+  };
+
+  const filterDishes = (categoryId, query) => {
+    let allDishes = categories.flatMap(category => category.dishes);
+
+    if (categoryId) {
+      const category = categories.find(cat => cat.id == categoryId);
+      allDishes = category ? category.dishes : [];
     }
+
+    const filtered = allDishes.filter(dish =>
+      dish.name.toLowerCase().includes(query.toLowerCase())
+    );
+
+    setFilteredDishes(filtered);
   };
 
   return (
