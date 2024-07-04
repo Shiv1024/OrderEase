@@ -11,7 +11,6 @@ const Menu = () => {
   const [filteredDishes, setFilteredDishes] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [offers, setOffers] = useState([]);
-
   useEffect(() => {
     // Fetch categories and offers from db.json using axios
     axios.get('http://localhost:5000/categories')
@@ -36,7 +35,7 @@ const Menu = () => {
         console.log(offers);
       })
       .catch(error => console.error('Error fetching offers:', error));
-  }, []);
+  },[searchQuery]);
 
   const handleSearchChange = (event) => {
     const query = event.target.value;
@@ -70,9 +69,9 @@ const Menu = () => {
   return (
     <div>
       <Navbar />
-    <div className="categories bg-gray-100 min-h-screen py-8">
+    <div className="categories bg-slat min-h-screen py-8">
       <div className="max-w-3xl mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-4 text-center">Menu</h2>
+        <h2 className="text-3xl font-bold mb-4 text-center text-white">Menu</h2>
 
         {/* Search and Category selection */}
         <div className="flex items-center justify-between mb-4">
@@ -110,7 +109,7 @@ const Menu = () => {
         {offers.length > 0 && <Offers offers={offers} />}
         {/* Dishes */}
         <div className="mt-8">
-          <h3 className="text-2xl font-bold mb-4">Dishes</h3>
+          <h3 className="text-2xl font-bold mb-4 text-white">Dishes</h3>
           {filteredDishes.length > 0 ? (
             <div>
               {filteredDishes.map((dish, index) => (

@@ -4,7 +4,7 @@ import Menu from "./components/Menu";
 import Cart from "./components/Cart";
 import CheckoutPage from "./components/Checkout";
 import { Route, Routes } from "react-router-dom";
-
+import Profile from "./components/Profile";
 const App=()=>{
     return(<div>
         <Routes>
@@ -13,7 +13,7 @@ const App=()=>{
             <Route path={"/menu"} element = {<Menu />}/>
             <Route path={"/cart"} element = {<Cart />}/>
             <Route path={"/checkout"} element = {<CheckoutPage />}/>
-
+            <Route path={"/profile"} element = {<Profile />}/>
         </Routes>
     </div>)
 }

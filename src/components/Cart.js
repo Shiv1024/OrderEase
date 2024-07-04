@@ -58,7 +58,7 @@ const CartPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="w-screen min-h-screen bg-gray-100 mx-auto py-8">
+      <div className="w-screen min-h-screen bg-slat mx-auto py-8">
         <div className="flex justify-between items-start w-full">
           <div className="w-1/2 ml-10">
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">
