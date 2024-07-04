@@ -63,7 +63,7 @@ const DishCard = (props) => {
   };
 
   return (
-    <div className="bg-white p-4 shadow-md rounded-lg mb-4 max-w-4xl mx-auto">
+    <div className="bg-gray-100 p-4 shadow-md rounded-lg mb-4 max-w-4xl mx-auto">
       <div className="flex items-center mb-4">
         <div className="w-24 h-24 mr-4">
           <img src={props.image} alt={props.name} className="w-full h-full object-cover rounded-lg" />

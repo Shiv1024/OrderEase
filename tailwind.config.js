@@ -7,9 +7,7 @@ module.exports = {
         '40vh': '40vh',
 
       },
-      colors:{
-        'slat':'#282c3f',
-      }
+      
     },
   },
   plugins: [],
