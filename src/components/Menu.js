@@ -122,6 +122,7 @@ const Menu = () => {
                     item={dish}
                     description={dish.description}
                     nutrients={dish.nutrients}
+                    admin={false}
                   />
                   {index !== filteredDishes.length - 1 && <hr className="my-4 border-gray-300" />} {/* Horizontal gray line */}
                 </div>

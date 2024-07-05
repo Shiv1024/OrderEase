@@ -28,11 +28,19 @@ const AuthForm = () => {
       }
       setError('');
       console.log('Sign Up:', credentials);
-      navigate("/menu");
+      if(role=='customer'){
+      navigate("/menu");}
+      else{
+        navigate("/admin");
+      }
     } else {
       setError('');
       console.log('Login:', credentials);
-      navigate("/menu");
+      if(role=='customer'){
+      navigate("/menu");}
+      else{
+        navigate("/admin");
+      }
     }
   };
 
