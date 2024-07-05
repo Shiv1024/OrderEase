@@ -3,6 +3,7 @@ import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
 import DishCard from './Dish.js'; // Adjust the import path based on your file structure
 import NavbarAdmin from './Navbaradmin.js';
+import CloseIcon from '@mui/icons-material/Close';
 
 const MenuAdmin = () => {
   const [categories, setCategories] = useState([]);
@@ -25,7 +26,6 @@ const MenuAdmin = () => {
       .then(response => {
         const categories = response.data;
         setCategories(categories);
-        console.log(response);
         // Initially set filtered dishes to all dishes from all categories
         const allDishes = categories.flatMap(category => category.dishes);
         setFilteredDishes(allDishes);
@@ -101,9 +101,9 @@ const MenuAdmin = () => {
           <h2 className="text-3xl font-bold mb-4 text-center text-black">Menu</h2>
 
           {/* Search and Category selection */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-4">
             {/* Search bar */}
-            <div className='relative flex-1 mr-4'>
+            <div className='relative flex-1 mb-4 md:mb-0 md:mr-4'>
               <input
                 type="text"
                 placeholder="Search for dishes"
@@ -117,11 +117,11 @@ const MenuAdmin = () => {
             </div>
 
             {/* Category dropdown */}
-            <div>
+            <div className="relative flex mb-4 md:mb-0">
               <select
                 value={selectedCategory || ''}
                 onChange={handleCategoryChange}
-                className="border border-gray-300 px-4 py-2 rounded-lg text-center font-bold"
+                className="border border-gray-300 px-4 py-2 rounded-lg text-center font-bold w-full md:w-auto"
               >
                 <option value="">Select Category</option>
                 {categories.map(category => (
@@ -130,8 +130,110 @@ const MenuAdmin = () => {
                   </option>
                 ))}
               </select>
+              <button
+                onClick={() => setShowAddDishForm(!showAddDishForm)}
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-bold ml-2 md:ml-4 flex items-center justify-center md:text-base text-sm"
+              >
+                <span className="md:mr-1">Add New Dish</span>
+              </button>
             </div>
           </div>
+
+          {/* Add Dish Form */}
+          {showAddDishForm && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+              <div className="bg-white p-6 rounded-lg shadow-md w-full md:max-w-2xl lg:max-w-xl sm:max-w-lg relative">
+                <button
+                  onClick={() => setShowAddDishForm(false)}
+                  className="absolute top-0 right-0 mt-2 mr-2"
+                >
+                  <CloseIcon />
+                </button>
+                <h3 className="text-2xl font-bold mb-4 text-center">Add Dish</h3>
+                <form onSubmit={handleAddDishSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-bold mb-2">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={newDish.name}
+                      onChange={handleAddDishChange}
+                      className="border border-gray-300 px-4 py-2 rounded-lg w-full"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold mb-2">Price</label>
+                    <input
+                      type="number"
+                      name="price"
+                      value={newDish.price}
+                      onChange={handleAddDishChange}
+                      className="border border-gray-300 px-4 py-2 rounded-lg w-full"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold mb-2">Image URL</label>
+                    <input
+                      type="text"
+                      name="image"
+                      value={newDish.image}
+                      onChange={handleAddDishChange}
+                      className="border border-gray-300 px-4 py-2 rounded-lg w-full"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold mb-2">Description</label>
+                    <textarea
+                      name="description"
+                      value={newDish.description}
+                      placeholder='Add small description of your dish'
+                      onChange={handleAddDishChange}
+                      className="border border-gray-300 px-4 py-2 rounded-lg w-full"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold mb-2">Nutrients</label>
+                    <input
+                      type="text"
+                      name="nutrients"
+                      value={newDish.nutrients}
+                      onChange={handleAddDishChange}
+                      className="border border-gray-300 px-4 py-2 rounded-lg w-full"
+                      placeholder='Example- Calories:490, Protein:30g...'
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold mb-2">Category</label>
+                    <select
+                      name="categoryId"
+                      value={newDish.categoryId}
+                      onChange={handleAddDishChange}
+                      className="border border-gray-300 px-4 py-2 rounded-lg w-full"
+                      required
+                    >
+                      <option value="">Select Category</option>
+                      {categories.map(category => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="text-center">
+                    <button
+                      type="submit"
+                      className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-bold"
+                    >
+                      Add Dish
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
 
           {/* Dishes */}
           <div className="mt-8">
@@ -149,9 +251,9 @@ const MenuAdmin = () => {
                       description={dish.description}
                       nutrients={dish.nutrients}
                       admin={true}
-                      delete={handleDelete}
+                      delete={() => handleDelete(dish.id)}
                     />
-                    {index !== filteredDishes.length - 1 && <hr className="my-4 border-gray-300" />} {/* Horizontal gray line */}
+                    {index !== filteredDishes.length - 1 && <hr className="my-4 border-gray-300" />}
                   </div>
                 ))}
               </div>
@@ -159,102 +261,6 @@ const MenuAdmin = () => {
               <p className="mt-8 text-lg text-gray-600">No dishes found.</p>
             )}
           </div>
-
-          {/* Add Dish Form Toggle */}
-          <div className="mt-8 text-center">
-            <button
-              onClick={() => setShowAddDishForm(!showAddDishForm)}
-              className="bg-green-700 text-white px-4 py-2 rounded-lg font-bold"
-            >
-              {showAddDishForm ? 'Cancel' : 'Add New Dish'}
-            </button>
-          </div>
-
-          {/* Add Dish Form */}
-          {showAddDishForm && (
-            <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-4 text-center">Add New Dish</h3>
-              <form onSubmit={handleAddDishSubmit}>
-                <div className="mb-4">
-                  <label className="block text-sm font-bold mb-2">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={newDish.name}
-                    onChange={handleAddDishChange}
-                    className="border border-gray-300 px-4 py-2 rounded-lg w-full"
-                    required
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-bold mb-2">Price</label>
-                  <input
-                    type="number"
-                    name="price"
-                    value={newDish.price}
-                    onChange={handleAddDishChange}
-                    className="border border-gray-300 px-4 py-2 rounded-lg w-full"
-                    required
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-bold mb-2">Image URL</label>
-                  <input
-                    type="text"
-                    name="image"
-                    value={newDish.image}
-                    onChange={handleAddDishChange}
-                    className="border border-gray-300 px-4 py-2 rounded-lg w-full"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-bold mb-2">Description</label>
-                  <textarea
-                    name="description"
-                    value={newDish.description}
-                    onChange={handleAddDishChange}
-                    className="border border-gray-300 px-4 py-2 rounded-lg w-full"
-                    required
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-bold mb-2">Nutrients</label>
-                  <input
-                    type="text"
-                    name="nutrients"
-                    value={newDish.nutrients}
-                    onChange={handleAddDishChange}
-                    className="border border-gray-300 px-4 py-2 rounded-lg w-full"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-bold mb-2">Category</label>
-                  <select
-                    name="categoryId"
-                    value={newDish.categoryId}
-                    onChange={handleAddDishChange}
-                    className="border border-gray-300 px-4 py-2 rounded-lg w-full"
-                    required
-                  >
-                    <option value="">Select Category</option>
-                    {categories.map(category => (
-                      <option key={category.id} value={category.id}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="text-center">
-                  <button
-                    type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold"
-                  >
-                    Add Dish
-                  </button>
-                </div>
-              </form>
-            </div>
-          )}
         </div>
       </div>
     </div>

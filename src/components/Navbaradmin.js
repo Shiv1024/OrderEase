@@ -26,7 +26,7 @@ const NavbarAdmin = () => {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <Link
-            to="/menu"
+            to="/menu_admin"
             className="flex items-center space-x-4 text-gray-800 hover:text-blue-500 transition duration-300"
           >
             <img src="/logo.jpg" alt="OrderEase Logo" className="h-8 w-auto" />
@@ -52,19 +52,13 @@ const NavbarAdmin = () => {
               className={`absolute ${isOpen ? 'block' : 'hidden'} bg-white shadow-lg rounded mt-2 w-40`}
             >
               <Link
-                to="/profile"
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-              >
-                Profile
-              </Link>
-              <Link
-                to="/orders"
+                to="/admin"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
                 Orders
               </Link>
               <Link
-                to="/settings"
+                to="/settings_admin"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
                 Settings
@@ -83,10 +77,7 @@ const NavbarAdmin = () => {
           <Link to="/menu_admin" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
             Your Menu
           </Link>
-          <Link to="/profile_admin" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-            Profile
-          </Link>
-          <Link to="/orders_admin" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+          <Link to="/admin" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
             Orders
           </Link>
           <Link to="/settings_admin" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
