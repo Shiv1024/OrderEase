@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import CartReducer from "./CartSlice";
+import HistoryReducer from "./OrderHistory";
 
 const store = configureStore({
 
     reducer: {
-        cart: CartReducer
+        cart: CartReducer,
+        history: HistoryReducer
     }
 
 });

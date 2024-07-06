@@ -58,11 +58,17 @@ const NavbarAdmin = () => {
                 Orders
               </Link>
               <Link
+                to="/Reviews"
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+              >
+                Customer Feedback
+              </Link>
+              {/* <Link
                 to="/settings_admin"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
                 Settings
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
@@ -80,9 +86,12 @@ const NavbarAdmin = () => {
           <Link to="/admin" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
             Orders
           </Link>
-          <Link to="/settings_admin" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-            Settings
+          <Link to="/Reviews" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+            Customer Feedback
           </Link>
+          {/* <Link to="/settings_admin" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+            Settings
+          </Link> */}
         </div>
       )}
     </nav>

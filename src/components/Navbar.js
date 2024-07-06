@@ -69,12 +69,12 @@ const Navbar = () => {
               >
                 Orders
               </Link>
-              <Link
+              {/* <Link
                 to="/settings"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
                 Settings
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
@@ -98,9 +98,9 @@ const Navbar = () => {
           <Link to="/orders" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
             Orders
           </Link>
-          <Link to="/settings" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+          {/* <Link to="/settings" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
             Settings
-          </Link>
+          </Link> */}
         </div>
       )}
     </nav>

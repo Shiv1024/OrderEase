@@ -55,7 +55,7 @@ const Menu = () => {
     let allDishes = categories.flatMap(category => category.dishes);
 
     if (categoryId) {
-      const category = categories.find(cat => cat.id == categoryId);
+      const category = categories.find(cat => cat.id === categoryId);
       allDishes = category ? category.dishes : [];
     }
 

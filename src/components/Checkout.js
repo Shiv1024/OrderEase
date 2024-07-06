@@ -1,11 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Navbar from './Navbar';
+import {useNavigate } from 'react-router-dom';
+import { addToHistory } from '../store/OrderHistory';
+import {clearCart} from "../store/CartSlice";
+import { toast } from 'react-toastify';
 
 const CheckoutPage = () => {
   const { cart } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const TAX_RATE = 0.1; // Example tax rate
   const DISCOUNT = 0.05; // Example discount rate for demonstration
+  const navigate = useNavigate();
 
   const calculateTotal = () => {
     let subtotal = 0;
@@ -19,6 +25,18 @@ const CheckoutPage = () => {
   const tax = subtotal * TAX_RATE;
   const discount = subtotal * DISCOUNT;
   const total = subtotal + tax - discount;
+
+  // console.log(total);
+
+  const handleCheckout = () =>
+    {
+      // console.log(total);
+      var d = new Date();
+      dispatch(addToHistory({cartItems: cart, totalPrice: total, currDate: d}));
+      dispatch(clearCart());
+      toast.success('Order Placed!');
+      navigate("/feedback");
+    }
 
   return (
     <div>
@@ -87,7 +105,7 @@ const CheckoutPage = () => {
             </div>
 
             <div className="flex justify-center">
-              <button className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+              <button onClick={handleCheckout} className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
                 Confirm and Pay
               </button>
             </div>

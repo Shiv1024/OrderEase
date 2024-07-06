@@ -39,13 +39,30 @@ const CartSlice = createSlice({
                 if(temp.food.id === action.payload.id) temp.amount--;
             })
             // console.log(state);
+        },
+
+
+        clearCart(state)
+        {
+            // state = [];
+            state.splice(0, state.length);
+            // console.log(state);
+        },
+
+        repeatOrder(state, action)
+        {
+            action.payload.forEach(item => {
+                state.push({food: item.food, amount: item.amount});
+            })
+
+            // state = action.payload;
         }
 
     }
 
 });
 
-export const {addToCart, removeFromCart, increment, decrement} = CartSlice.actions;
+export const {addToCart, removeFromCart, increment, decrement, clearCart, repeatOrder} = CartSlice.actions;
 
 export default CartSlice.reducer;
 

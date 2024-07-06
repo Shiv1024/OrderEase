@@ -28,7 +28,7 @@ const AuthForm = () => {
       }
       setError('');
       console.log('Sign Up:', credentials);
-      if(role=='customer'){
+      if(role==='customer'){
       navigate("/menu");}
       else{
         navigate("/admin");
@@ -36,7 +36,7 @@ const AuthForm = () => {
     } else {
       setError('');
       console.log('Login:', credentials);
-      if(role=='customer'){
+      if(role==='customer'){
       navigate("/menu");}
       else{
         navigate("/admin");
