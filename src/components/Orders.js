@@ -50,8 +50,8 @@ const Orders = () => {
               </div>
               <div className="text-right mt-4">
                 {/* <p className="text-lg font-semibold text-gray-800">Total: {order.total} Rs</p> */}
-                <p className="text-lg font-semibold text-gray-800">Total: {order.totalPrice} Rs</p>
-                <button onClick={() => handleReorder(order.cartItems)} className="mt-2 px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800 transition duration-300">
+                <p className="text-md md:text-lg lg:text-lg font-semibold text-gray-800">Total: {order.totalPrice} Rs</p>
+                <button onClick={() => handleReorder(order.cartItems)} className="mt-2 text-sm px-3 py-2 md:px-4 md:py-2 md:text-base lg:px-4 lg:py-2 lg:text-base bg-green-700 text-white rounded-lg hover:bg-green-800 transition duration-300">
                   Reorder
                 </button>
               </div>

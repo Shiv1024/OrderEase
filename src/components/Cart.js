@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from "./Navbar";
 import { useDispatch, useSelector } from 'react-redux';
-import {removeFromCart, increment, decrement} from "../store/CartSlice";
+import { removeFromCart, increment, decrement } from "../store/CartSlice";
 
 const CartPage = () => {
   const [addresses, setAddresses] = useState([
@@ -12,18 +12,18 @@ const CartPage = () => {
   ]);
 
   const [selectedOption, setSelectedOption] = useState('Home Delivery');
-  const {cart} = useSelector((state)=>state);
+  const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const [showAddAddressPopup, setShowAddAddressPopup] = useState(false);
   const [newAddress, setNewAddress] = useState({ houseNumber: '', area: '', city: '' });
 
-  const[table, setTable] = useState("Select Table Number")
+  const [table, setTable] = useState("Select Table Number")
 
   const totalPrice = () => {
     let sm = 0;
     cart.forEach((temp) => {
-      sm += (temp.amount)*(temp.food.price);
+      sm += (temp.amount) * (temp.food.price);
     });
     return sm;
   };
@@ -33,7 +33,7 @@ const CartPage = () => {
   }
 
   function handleDecrement(temp, amt) {
-    if(amt === 1) dispatch(removeFromCart(temp));
+    if (amt === 1) dispatch(removeFromCart(temp));
     else dispatch(decrement(temp));
   }
 
@@ -46,11 +46,11 @@ const CartPage = () => {
       const newId = addresses.length > 0 ? addresses[addresses.length - 1].id + 1 : 1;
       setAddresses([...addresses, { id: newId, ...newAddress }]);
       setNewAddress({ houseNumber: '', area: '', city: '' });
-      setShowAddAddressPopup(false); 
+      setShowAddAddressPopup(false);
     }
   };
 
-  function handleTableChange(event){
+  function handleTableChange(event) {
     let temp1 = event.target.value;
     setTable(temp1);
   }
@@ -59,8 +59,8 @@ const CartPage = () => {
     <div>
       <Navbar />
       <div className="w-screen min-h-screen bg-gray-100 mx-auto py-8">
-        <div className="flex justify-between items-start w-full">
-          <div className="w-1/2 ml-10">
+        <div className="flex flex-col md:flex-row justify-between items-start w-full">
+          <div className="w-full md:w-1/2 ml-10 md:ml-0">
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Your Details</h2>
               <div className="flex items-center space-x-4 mb-4">
@@ -77,19 +77,19 @@ const CartPage = () => {
 
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">
               <div className="flex space-x-4 mb-4">
-                <button 
+                <button
                   className={`px-4 py-2 rounded-lg font-semibold ${selectedOption === 'Home Delivery' ? 'bg-green-700 text-white' : 'bg-gray-200 text-gray-700'}`}
                   onClick={() => setSelectedOption('Home Delivery')}
                 >
                   Home Delivery
                 </button>
-                <button 
+                <button
                   className={`px-4 py-2 rounded-lg font-semibold ${selectedOption === 'Pick-up' ? 'bg-green-700 text-white' : 'bg-gray-200 text-gray-700'}`}
                   onClick={() => setSelectedOption('Pick-up')}
                 >
                   Pick-up
                 </button>
-                <button 
+                <button
                   className={`px-4 py-2 rounded-lg font-semibold ${selectedOption === 'Dine-in' ? 'bg-green-700 text-white' : 'bg-gray-200 text-gray-700'}`}
                   onClick={() => setSelectedOption('Dine-in')}
                 >
@@ -188,28 +188,28 @@ const CartPage = () => {
 
               {selectedOption === 'Dine-in' && (
                 <div>
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">Dine-in</h2>
-                {/* Dine-in option: Add table number dropdown */}
-                <div className="mb-4">
-                  <select
-                    id="tableNumber"
-                    className="w-1/3 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700"
-                    onChange={handleTableChange}
-                    value={table}
-                  >
-                    <option key='0' value='0'>Select Table Number</option>
-                     {Array.from({ length: 15 }, (_, i) => (
-                      <option key={i+1} value={i+1}>Table {i+1}</option>
-                    ))} 
-                  </select>
+                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Dine-in</h2>
+                  {/* Dine-in option: Add table number dropdown */}
+                  <div className="mb-4">
+                    <select
+                      id="tableNumber"
+                      className="w-1/3 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700"
+                      onChange={handleTableChange}
+                      value={table}
+                    >
+                      <option key='0' value='0'>Select Table Number</option>
+                      {Array.from({ length: 15 }, (_, i) => (
+                        <option key={i + 1} value={i + 1}>Table {i + 1}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-              </div>
               )}
             </div>
           </div>
 
           {cart.length ? (
-            <div className="w-1/3 mr-10">
+            <div className="w-full md:w-1/3 mr-10 md:mr-0 mt-6 md:mt-0">
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-semibold text-gray-800 mb-4">Cart Summary</h2>
                 <div className="overflow-x-auto">
@@ -248,7 +248,7 @@ const CartPage = () => {
               </div>
             </div>
           ) : (
-            <div className="w-1/3 flex justify-center items-center mr-12">
+            <div className="w-full md:w-1/3 flex justify-center items-center mr-12 md:mr-0 mt-6 md:mt-0">
               <div className="w-full flex flex-col justify-center items-center h-40vh bg-white rounded-lg shadow-md p-6">
                 <img
                   src="/carts.png"
@@ -262,7 +262,7 @@ const CartPage = () => {
                     Start Ordering
                   </button>
                 </Link>
-              </div> 
+              </div>
             </div>
           )}
         </div>

@@ -31,7 +31,7 @@ const Profile = () => {
     <Navbar />
     <div className="bg-slat flex justify-center items-center h-screen">
       <div className="max-w-xl w-full p-8 bg-white rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold mb-6 text-center">User Profile</h1>
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-center">User Profile</h1>
         {editMode ? (
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
@@ -76,14 +76,14 @@ const Profile = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="mr-4 px-6 py-3 bg-green-700 hover:bg-green-800 text-white rounded-md"
+                className="mr-4 text-sm px-4 py-2 md:px-6 md:py-3 md:text-base lg:px-6 lg:py-3 lg:text-base bg-green-700 hover:bg-green-800 text-white rounded-md"
               >
                 Save
               </button>
               <button
                 type="button"
                 onClick={() => setEditMode(false)}
-                className="ml-4 px-6 py-3 bg-gray-600 text-white rounded-md"
+                className="ml-4 text-sm px-4 py-2 md:px-6 md:py-3 md:text-base lg:px-6 lg:py-3 lg:text-base bg-gray-600 text-white rounded-md"
               >
                 Cancel
               </button>
@@ -103,7 +103,7 @@ const Profile = () => {
             <div className="text-center">
               <button
                 onClick={() => setEditMode(true)}
-                className="px-6 py-3 bg-green-700 hover:bg-green-800 text-white rounded-md"
+                className="text-sm px-4 py-2 md:px-6 md:py-3 md:text-base lg:px-6 lg:py-3 lg:text-base bg-green-700 hover:bg-green-800 text-white rounded-md"
               >
                 Edit Profile
               </button>
